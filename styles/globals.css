@@ -4,27 +4,56 @@
 
 
 @layer components{
+
+    .body{
+        @apply bg-midnight w-screen h-screen p-1 overflow-x-hidden;
+    }
+
 	.main{
-        @apply min-h-screen p-16 flex-1 flex flex-col justify-center items-center;
+        @apply min-h-screen p-16 flex-1 flex flex-col justify-center items-center ;
     }
 
     .strong{
         @apply font-bold text-6xl;
     }
 
-    .sub{
-        @apply text-3xl align-middle;
+    .annonce{
+        @apply rounded-xl border-solid border-2 border-midnight m-5  w-1/2 overflow-hidden
+        bg-misty text-lg hover:scale-105 hover:shadow-lg transition-all ease-linear duration-100;
     }
 
-    .link{
-        @apply hover:underline text-green-500;
+    .intitule{
+        @apply font-bold text-4xl items-start m-5 text-grotto;
+    }
+
+    .element{
+        @apply mx-5 mb-5;
+    }
+
+    .description{
+        @apply m-4;
+    }
+
+    .button{
+        @apply border-solid border-dark border-2 rounded-xl w-44 h-8 text-dark bg-misty
+        font-bold hover:text-misty hover:bg-dark
+        transition-all ease-linear duration-200;
+    }
+
+    .mainButton{
+        @apply border-solid border-dark border-2 rounded-xl w-60 h-16 text-misty bg-grotto
+        font-bold hover:text-dark hover:bg-misty
+        transition-all ease-linear duration-200;
+    }
+
+    .details{
+        @apply absolute top-52 left-[10%] w-4/5 text-lg bg-misty h-96 border-solid border-2 border-dark rounded-xl overflow-hidden;
+    }
+
+    .tooltip{
+        @apply absolute w-auto p-2 m-2 min-w-max top-[8px] left-52 rounded-md shadow-md
+		text-white bg-gray-900 
+		text-xs font-bold 
+		transition-all duration-100 scale-0 origin-left
     }
 }
-
-/*min-height: 100vh;
-padding: 4rem 0;
-flex: 1;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;*/
