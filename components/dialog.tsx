@@ -89,7 +89,7 @@ export const Dialog: React.FC<IProps> = (props) => {
 
 	return (
 		<div>
-			<Button className="button relative left-3/4 top-20" onClick={handler}>
+			<Button className="button dark relative left-3/4 top-20" onClick={handler}>
 				Postuler
 			</Button>
 			<Modal
@@ -119,10 +119,10 @@ export const Dialog: React.FC<IProps> = (props) => {
 						<label htmlFor="cv" className="label">CV: </label>
 						<input id="cv" name="name" type="file" onChange={onChangeFile} required/>
 						<Spacer y={2}/>
-						<Button className="button relative ml-5 mr-20" onClick={cancelHandler}>
+						<Button className="button cancel relative ml-5 mr-20" onClick={cancelHandler}>
 							Annuler
 						</Button>
-						<Button type="submit" className="button ml-20 mr-5">
+						<Button type="submit" className="button dark ml-20 mr-5">
 							Candidater
 						</Button>
 					</form>
