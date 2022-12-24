@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import Back from "../../components/back";
 import { Spacer } from "@nextui-org/react";
 
-type Data = {
+type Annonce = {
     nom_employeur: string,
     email: string,
     ville: string, 
@@ -14,14 +14,15 @@ type Data = {
     date_creation: string,
 }
 
-async function postData(data: Data){
-    alert(JSON.stringify(data));
+async function postData(data: Annonce){
+    alert("depuis post" + JSON.stringify(data));
     const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces`, {
         method: 'POST',
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data),
     })
     const reponse = await resp.json();
-    //!alert(JSON.stringify(reponse));
+    alert("reponse serveur" + JSON.stringify(reponse));
     //*Renvoi un json avec id créé normalement et reste des champs vides
 }
 
@@ -32,7 +33,7 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
     if(event.currentTarget === null) return;
 
     const target = event.currentTarget;
-    const data: Data = {
+    const data: Annonce = {
         nom_employeur: target.nom.value,
         email: target.email.value,
         ville: target.ville.value,
@@ -42,7 +43,7 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         date_creation: date,
     }
 
-    alert(JSON.stringify(data)); 
+    alert("depuis main" + JSON.stringify(data)); 
     //* Les données sont correctements placées dans les champs
     
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

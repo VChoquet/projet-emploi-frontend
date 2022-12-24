@@ -2,15 +2,32 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, {useState, useEffect} from "react";
 import Cadre from "../../components/cadre"
-import Link from "next/link";
-import { Button } from "reactstrap";
-import Dialog from "../../components/test";
+import Dialog from "../../components/dialog";
 import Back from "../../components/back";
+
+type Annonce = {
+    id: string,
+    nom_employeur: string,
+    email: string,
+    intitule: string,
+    ville: string,
+    description: string,
+    type_contrat: string,
+    date_creation: string,
+    nb_visite: string,
+}
+
+async function updateVisite(annonce: Annonce) {
+    await fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces/${annonce.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(annonce),
+    });
+}
 
 export default function details(){
     const {query: {id}} = useRouter();
     const [annonce, setAnnonce] = useState<any>(null);
-    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         async function getAnnonce() {
@@ -23,22 +40,25 @@ export default function details(){
     }, [id])
 
 
-    if(annonce === null){
+    if(annonce === null || typeof id !== 'string'){
         return <div>Loading...</div>;
     }
 
     const nb_visite = annonce.nb_visite + 1;
-    
 
-    fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces/${annonce.id}`, {
-        method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(annonce),
-    });
+    const annonceUpdate: Annonce = {
+        id,
+        nom_employeur: annonce.nom_employeur,
+        email: annonce.email,
+        intitule: annonce.intitule,
+        ville: annonce.ville,
+        description: annonce.description,
+        type_contrat: annonce.type_contrat,
+        date_creation: annonce.date_creation,
+        nb_visite
+    }
 
-
-    
-
+    updateVisite(annonceUpdate);
 
     return(
         <div>
