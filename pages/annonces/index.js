@@ -28,7 +28,7 @@ export default function Home() {
 			<Cadre text="Nos offres d'emplois"/>
 			<main className='main'>
 			{annonces.map((annonce) => (
-				<div className="annonce">
+				<div className="annonce" key={annonce.id}>
 					<Link href={`/annonces/${annonce.id}`}>
 						<div>
 							<div className="intitule">{annonce.intitule}</div>	

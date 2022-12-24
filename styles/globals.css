@@ -6,7 +6,7 @@
 @layer components{
 
     .body{
-        @apply bg-midnight w-screen h-screen p-1 overflow-x-hidden;
+        @apply bg-gradient-to-br from-misty via-turquoise to-midnight w-screen h-screen p-1 overflow-x-hidden;
     }
 
 	.main{
@@ -35,15 +35,22 @@
     }
 
     .button{
-        @apply border-solid border-dark border-2 rounded-xl w-44 h-8 text-dark bg-misty
-        font-bold hover:text-misty hover:bg-dark
-        transition-all ease-linear duration-200;
+        @apply border-solid  border-2 rounded-xl w-44 h-8 
+        font-bold transition-all ease-linear duration-200;
+    }
+
+    .light{
+        @apply border-dark text-dark bg-misty hover:text-misty hover:bg-dark;
+    }
+
+    .dark{
+        @apply hover:border-grotto hover:text-turquoise hover:bg-dark
+        border-dark bg-turquoise text-midnight;
     }
 
     .mainButton{
-        @apply border-solid border-dark border-2 rounded-xl w-60 h-16 text-misty bg-grotto
-        font-bold hover:text-dark hover:bg-misty
-        transition-all ease-linear duration-200;
+        @apply  border-dark w-60 h-16 text-misty bg-grotto
+        hover:text-dark hover:bg-misty;
     }
 
     .details{
@@ -55,5 +62,23 @@
 		text-white bg-gray-900 
 		text-xs font-bold 
 		transition-all duration-100 scale-0 origin-left
+    }
+
+    .label{
+        @apply block float-left w-40;
+    }
+
+    .case{
+        @apply border-2 border-solid border-dark rounded-lg;
+    }
+
+    .radio{
+        @apply relative left-1/4 top-[-22px];
+    }
+
+    .back{
+        @apply border-solid border-dark border-2 text-6xl align-text-top rounded-full w-16 h-16 text-grotto bg-misty
+        font-bold hover:text-misty hover:bg-dark
+        transition-all ease-linear duration-200;
     }
 }

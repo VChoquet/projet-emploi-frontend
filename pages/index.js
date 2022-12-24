@@ -14,7 +14,7 @@ export default function Home() {
 			<Cadre text="Une liste exhaustive des offres d'emplois en Polynésie"/>
 			<main className='main'>
 				<Link href="/annonces">
-					<Button className="mainButton">Accéder à nos annonces</Button>
+					<Button className="button mainButton">Accéder à nos annonces</Button>
 				</Link>	
 			</main>
 		</div>

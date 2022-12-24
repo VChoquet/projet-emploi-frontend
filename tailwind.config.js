@@ -10,7 +10,8 @@ module.exports = {
 				midnight: '#192e41',
 				dark: '#05263b',
 				grotto: '#0d659d',
-				misty: '#bbc8de'
+				misty: '#bbc8de',
+				turquoise: '#30d5c8'
 			},
 		},
 	},
