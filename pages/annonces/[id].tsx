@@ -2,8 +2,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, {useState, useEffect} from "react";
 import Cadre from "../../components/cadre"
-import Dialog from "../../components/dialog";
+import { Dialog } from "../../components/dialog";
 import Back from "../../components/back";
+import axios, { AxiosProgressEvent, AxiosRequestConfig } from "axios";
 
 type Annonce = {
     id: string,
@@ -60,6 +61,9 @@ export default function details(){
 
     updateVisite(annonceUpdate);
 
+
+
+
     return(
         <div>
             <Head>
@@ -79,7 +83,7 @@ export default function details(){
                             <div className="element"><span className="font-bold">email: </span> {annonce.email}</div>
                         </div>
                         <div className="description">{annonce.description}</div>
-                        <Dialog/>
+                        <Dialog label="Choisir un fichier" uploadFileName="file" id_annonce={annonce.id}/>
                     </div>
             </div>
         </div>
