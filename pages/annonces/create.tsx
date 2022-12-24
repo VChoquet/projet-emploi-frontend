@@ -4,36 +4,41 @@ import { Button } from "reactstrap";
 import Back from "../../components/back";
 import { Spacer } from "@nextui-org/react";
 
-async function postData(data){
+type Data = {
+    nom_employeur: string,
+    email: string,
+    ville: string, 
+    description: string,
+    intitule: string,
+    type_contrat: string,
+    date_creation: string,
+}
+
+async function postData(data: Data){
     alert(JSON.stringify(data));
     const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces`, {
         method: 'POST',
-        body: {
-            nom_employeur: data.nom_employeur,
-            email: data.email,
-            ville: data.ville,
-            description: data.description,
-            intitule: data.intitule,
-            type_contrat: data.type_contrat,
-            date_creation: data.date,
-        },
+        body: JSON.stringify(data),
     })
     const reponse = await resp.json();
     //!alert(JSON.stringify(reponse));
     //*Renvoi un json avec id créé normalement et reste des champs vides
 }
 
-async function handleSubmit(event){
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();        
-    const date = new Date().toJSON;
+    const date = new Date().toDateString();
 
-    const data = {
-        nom_employeur: event.target.nom.value,
-        email: event.target.email.value,
-        ville: event.target.ville.value,
-        description: event.target.description.value,
-        intitule: event.target.intitule.value,
-        type_contrat: event.target.type_contrat.value,
+    if(event.currentTarget === null) return;
+
+    const target = event.currentTarget;
+    const data: Data = {
+        nom_employeur: target.nom.value,
+        email: target.email.value,
+        ville: target.ville.value,
+        description: target.description.value,
+        intitule: target.intitule.value,
+        type_contrat: target.type_contrat.value,
         date_creation: date,
     }
 
@@ -61,19 +66,19 @@ export default function formulaire(){
                 <div className="absolute top-1/3 left-1/3 bg-misty p-5 w-fit leading-12 rounded-xl">
                     <form  onSubmit={handleSubmit}>
                         <label className="label" htmlFor="nom">nom de l'entreprise: </label>
-                        <input className="case" type="text" id="nom" name="nom" size="30" required/><br/>
+                        <input className="case" type="text" id="nom" name="nom" size={30} required/><br/>
                         <Spacer y={1}/>
                         <label className="label" htmlFor="email">email de l'entreprise: </label>
-                        <input className="case" type="email" id="email" name="email" size="30" required/><br/>
+                        <input className="case" type="email" id="email" name="email" size={30} required/><br/>
                         <Spacer y={1}/>
                         <label className="label" htmlFor="intitule">intitule du poste: </label>
-                        <input className="case" type="text" id="intitule" name="intitule" size="30" required/><br/>
+                        <input className="case" type="text" id="intitule" name="intitule" size={30} required/><br/>
                         <Spacer y={1}/>
                         <label className="label" htmlFor="ville">ville du poste: </label>
-                        <input className="case" type="text" id="ville" name="ville" size="30" required/><br/>
+                        <input className="case" type="text" id="ville" name="ville" size={30} required/><br/>
                         <Spacer y={1.5}/>
                         <label className="label" htmlFor="description">description du poste: </label>
-                        <textarea  className="case" type="text" id="description" name="description" rows="5" cols="50" required/><br/>
+                        <textarea  className="case" data-type="text" id="description" name="description" rows={5} cols={50} required/><br/>
                         <Spacer y={1}/>
                         <label>Type de contrat:</label>
                         <div className="radio">

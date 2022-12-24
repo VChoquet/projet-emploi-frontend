@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Button } from "reactstrap";
 
-const Cadre = ({text}) => {
+type Prop = {
+    text: string,
+}
+
+const Cadre = ({text}: Prop) => {
     return(
         <div className="fixed top-0 left-0 h-16 w-screen py-3
         flex bg-primary shadow-lg z-10 bg-grotto">

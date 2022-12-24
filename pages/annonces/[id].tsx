@@ -1,16 +1,15 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, {useState, useEffect} from "react";
-import Cadre from "./../../components/cadre"
+import Cadre from "../../components/cadre"
 import Link from "next/link";
 import { Button } from "reactstrap";
-import Dialog from "../../components/dialog";
-import App from "../../components/test";
+import Dialog from "../../components/test";
 import Back from "../../components/back";
 
 export default function details(){
     const {query: {id}} = useRouter();
-    const [annonce, setAnnonce] = useState(null);
+    const [annonce, setAnnonce] = useState<any>(null);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -24,25 +23,17 @@ export default function details(){
     }, [id])
 
 
-    
-    if(!annonce){
+    if(annonce === null){
         return <div>Loading...</div>;
     }
-    
+
     const nb_visite = annonce.nb_visite + 1;
+    
 
     fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces/${annonce.id}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
-        body: {
-            nom_employeur: annonce.nom_employeur,
-            email: annonce.intitule,
-            intitule: annonce.intitule,
-            ville: annonce.ville,
-            description: annonce.dscription,
-            nb_visite,
-            date_creation: annonce.date_creation,
-        }
+        body: JSON.stringify(annonce),
     });
 
 
@@ -68,7 +59,7 @@ export default function details(){
                             <div className="element"><span className="font-bold">email: </span> {annonce.email}</div>
                         </div>
                         <div className="description">{annonce.description}</div>
-                        <App/>
+                        <Dialog/>
                     </div>
             </div>
         </div>

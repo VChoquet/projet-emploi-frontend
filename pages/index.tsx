@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Button } from "reactstrap";
-import Cadre from "./../components/cadre"
+import Cadre from "../components/cadre"
 
 export default function Home() {
 	return (

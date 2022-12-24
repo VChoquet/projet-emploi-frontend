@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { Modal, Text, Input, Spacer, Row, Checkbox } from "@nextui-org/react";
 
-export default function App() {
+export default function Dialog() {
 	const [visible, setVisible] = useState(false);
 	const [query, setQuery] = useState(false);
 
@@ -13,6 +13,9 @@ export default function App() {
 		setVisible(false);
 	}
 
+	const onChangeFile = () => {
+
+	}
 
 
 	const validateHandler = () => {
@@ -38,13 +41,13 @@ export default function App() {
 				</Modal.Header>
 				<Modal.Body>
 					<form onSubmit={validateHandler}>
-						<label htmlfFor="nom" className="label" >Nom: </label>
+						<label htmlFor="nom" className="label" >Nom: </label>
 						<input className="case" id="nom" name="nom" type="text" required/>
 						<Spacer y={1}/>
-						<label htmlfFor="prenom" className="label" >Prenom: </label>
+						<label htmlFor="prenom" className="label" >Prenom: </label>
 						<input className="case" id="prenom" name="prenom" type="text" required/>
 						<Spacer y={1}/>	
-						<label htmlfFor="email" className="label" >Email: </label>
+						<label htmlFor="email" className="label" >Email: </label>
 						<input className="case" id="email" name="email" type="email" required/>
 						<Spacer y={1}/>
 						<input id="cv" name="name" type="file" onChange={onChangeFile} required/>

@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import Cadre from "./../../components/cadre"
+import Cadre from "../../components/cadre"
 import { useState, useEffect } from "react";
 
 export default function Home() {
-	const [annonces, setAnnonces] = useState([]);
+	const [annonces, setAnnonces] = useState<any[]>([]);
 
 	useEffect(() => {
 		async function getAnnonces() {

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import React from "react";
 import { Button } from "reactstrap";
 
-const Back = ({text, back = "<"}) => {
+const Back = ({text}: {text: string}) => {
+    const back = "<";
     return(
         <Link href="./" className="fixed left-7 top-24">
         <Button className="back group">

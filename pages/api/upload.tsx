@@ -1,5 +1,6 @@
 import nextConnect from "next-connect";
 import multer from "multer";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -8,7 +9,7 @@ const upload = multer({
     }),
 });
 
-const apiRoute = nextConnect({
+const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
     onError(error, req, res){
         res.status(501).json({error: `${error.message}`});
     },
