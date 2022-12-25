@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Button } from "reactstrap";
 import Back from "../../components/back";
 import { Spacer } from "@nextui-org/react";
-import { useRouter } from "next/router";
+import Router from "next/router";
 
 type Annonce = {
     nom_employeur: string,
@@ -25,6 +25,7 @@ async function postData(data: Annonce){
     try{
         const reponse = await resp.json();
         console.log(JSON.stringify(reponse));
+        Router.push(`./${reponse.id}`);
     }
     catch(error){
         alert("oh no");
