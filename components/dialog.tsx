@@ -55,14 +55,19 @@ export const Dialog: React.FC<IProps> = (props) => {
     }
 
 	const createCandidature = async (candidature: Candidature) => {
-		const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + '/candidatures', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(candidature),
-		})
-		console.log(await resp.json());
+		try{
+			const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + '/candidatures', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(candidature),
+			})
+			console.log(await resp.json());
+			alert("Candidature déposée");
+		} catch (error){
+			console.log(error);
+		}
 	}
 
 
