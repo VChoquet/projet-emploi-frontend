@@ -83,8 +83,8 @@ export const Dialog: React.FC<IProps> = (props) => {
 			pathCV: (await reponse).data.data,
 		};
 		createCandidature(candidature);
-		console.log(JSON.stringify(candidature));
-		
+		//console.log(JSON.stringify(candidature));
+		setVisible(false);
 	}
 
 	return (

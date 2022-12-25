@@ -1,9 +1,17 @@
 import Head from "next/head";
-import Link from "next/link";
-import { Button } from "reactstrap";
 import Cadre from "../components/cadre"
+import React, { useEffect } from "react";
+import Router from "next/router";
 
 export default function Home() {
+
+	useEffect(() => {
+		const {pathname} = Router;
+		if(pathname == '/'){
+			Router.push('annonces');
+		}
+	})
+
 	return (
 	<div>
 		<Head>
@@ -13,9 +21,7 @@ export default function Home() {
 		<div className='body'>
 			<Cadre text="Une liste exhaustive des offres d'emplois en Polynésie"/>
 			<main className='main'>
-				<Link href="/annonces">
-					<Button className="button mainButton">Accéder à nos annonces</Button>
-				</Link>	
+				<div>Chargement des annonces</div>
 			</main>
 		</div>
 	</div>);
