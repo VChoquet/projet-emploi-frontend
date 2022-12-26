@@ -24,11 +24,10 @@ async function postData(data: Annonce){
     })
     try{
         const reponse = await resp.json();
-        console.log(JSON.stringify(reponse));
         Router.push(`./${reponse.id}`);
     }
     catch(error){
-        alert("oh no");
+        alert("Cette ville n'existe pas");
     }
 }
 
