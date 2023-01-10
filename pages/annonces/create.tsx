@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import Back from "../../components/back";
 import { Spacer } from "@nextui-org/react";
 import Router from "next/router";
+import { useState, useEffect } from "react";
 
 type Annonce = {
     nom_employeur: string,
@@ -58,6 +59,21 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
 }
 
 export default function formulaire(){
+    const [villes, setVilles] = useState<any[]>([]);
+
+    useEffect(() => {
+        async function getVilles(){
+            const resp = await fetch('https://geo.api.gouv.fr/departements/987/communes?fields=nom');
+            setVilles(await resp.json());
+        }
+        getVilles();
+    }, []);
+
+    if(!villes){
+        return <div>Loading... </div>
+    }
+
+
     return(
         <div>
             <Head>
@@ -78,7 +94,14 @@ export default function formulaire(){
                         <input className="case" type="text" id="intitule" name="intitule" size={30} required/><br/>
                         <Spacer y={1}/>
                         <label className="label" htmlFor="ville">ville du poste: </label>
-                        <input className="case" type="text" id="ville" name="ville" size={30} required/><br/>
+                        <select name="ville">
+                            <option value='NULL'>Selectionnez une ville</option>
+                        {
+                            villes.map((ville) => {
+                                return <option value={ville.nom}>{ville.nom} - {ville.code}</option>
+                            })
+                        }
+                        </select>
                         <Spacer y={1.5}/>
                         <label className="label" htmlFor="description">description du poste: </label>
                         <textarea  className="case" data-type="text" id="description" name="description" rows={5} cols={50} required/><br/>
