@@ -4,18 +4,7 @@ import React, {useState, useEffect} from "react";
 import Cadre from "../../components/cadre"
 import Dialog from "../../components/dialog";
 import Back from "../../components/back";
-
-type Annonce = {
-    id: string,
-    nom_employeur: string,
-    email: string,
-    intitule: string,
-    ville: string,
-    description: string,
-    type_contrat: string,
-    date_creation: string,
-    nb_visite: string,
-}
+import { Annonce } from "../../Interfaces/annonce";
 
 async function updateVisite(annonce: Annonce) {
     await fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces/${annonce.id}`, {

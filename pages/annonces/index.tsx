@@ -1,22 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
+import { GetServerSideProps } from "next/types";
 import Cadre from "../../components/cadre"
-import { useState, useEffect } from "react";
+import { Annonce } from "../../Interfaces/annonce";
 
-export default function Home() {
-	const [annonces, setAnnonces] = useState<any[]>([]);
 
-	useEffect(() => {
-		async function getAnnonces() {
-			const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+'/annonces');		
-			setAnnonces(await resp.json());
-		}
-		getAnnonces();
-	}, [])
+export async function getServerSideProps(){
+	const resp = await fetch(process.env.NEXT_PUBLIC_API_URL+'/annonces');		
+	const annonces: Annonce[] = await resp.json();
 
 	if(!annonces){
-		return <div>Loading...</div>
+		return {
+			notFound: true,
+		}
 	}
+
+	return {
+		props: {
+			annonces,
+		}
+	}
+}
+
+export default function Home(props: any) {
+	const annonces: Annonce[] = props.annonces;
 
 	return (
 	<div>
@@ -27,7 +34,7 @@ export default function Home() {
 		<div className='body'>
 			<Cadre text="Nos offres d'emplois"/>
 			<main className='main'>
-			{annonces.map((annonce) => (
+			{annonces.map((annonce: Annonce) => (
 				<div className="annonce" key={annonce.id}>
 					<Link href={`/annonces/${annonce.id}`}>
 						<div>
