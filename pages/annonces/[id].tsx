@@ -21,7 +21,9 @@ async function updateVisite(annonce: Annonce) {
     await fetch(process.env.NEXT_PUBLIC_API_URL + `/annonces/${annonce.id}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(annonce),
+        body: JSON.stringify({
+            nb_visite: parseInt(annonce.nb_visite)
+        }),
     });
 }
 
