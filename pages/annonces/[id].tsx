@@ -2,9 +2,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, {useState, useEffect} from "react";
 import Cadre from "../../components/cadre"
-import { Dialog } from "../../components/dialog";
+import Dialog from "../../components/dialog";
 import Back from "../../components/back";
-import axios, { AxiosProgressEvent, AxiosRequestConfig } from "axios";
 
 type Annonce = {
     id: string,

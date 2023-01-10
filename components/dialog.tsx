@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Button } from "reactstrap";
-import { Modal, Text, Input, Spacer, Row, Checkbox } from "@nextui-org/react";
+import { Modal, Text, Spacer } from "@nextui-org/react";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface IProps{
@@ -23,7 +23,7 @@ interface Candidature{
 	pathCV: string;
 }
 
-export const Dialog: React.FC<IProps> = (props) => {
+const Dialog: React.FC<IProps> = (props) => {
 	const [visible, setVisible] = useState(false);
 	const values = useRef<FileSaver>({
 		file: false,
@@ -136,3 +136,5 @@ export const Dialog: React.FC<IProps> = (props) => {
 		</div>
 	);
 }
+
+export default Dialog;
